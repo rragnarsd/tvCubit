@@ -17,13 +17,4 @@ class TvRepository {
       throw Exception('Failed');
     }
   }
-
-  // List<TvModel> tvShows = [];
-
-// void populateMovies() async {
-//   final myMovies = await getMovies();
-//   tvShows.addAll(myMovies);
-//   print(tvShows[2].name);
-// }
-
 }

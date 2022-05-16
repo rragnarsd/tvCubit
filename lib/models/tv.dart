@@ -8,7 +8,7 @@ class TvModel extends Equatable {
   // final DateTime endDate;
   final String country;
   final String network;
-  final String image;
+  final String imageUrl;
 
   const TvModel({
     required this.id,
@@ -18,7 +18,7 @@ class TvModel extends Equatable {
     // required this.endDate,
     required this.country,
     required this.network,
-    required this.image,
+    required this.imageUrl,
   });
 
   factory TvModel.fromJson(Map<String, dynamic> data) {
@@ -37,12 +37,13 @@ class TvModel extends Equatable {
       network: data.containsKey('network') && data['network'] != null
           ? data['network']
           : '',
-      image: data.containsKey('image') && data['image'] != null
-          ? data['image']
+      imageUrl: data.containsKey('image_thumbnail_path') &&
+              data['image_thumbnail_path'] != null
+          ? data['image_thumbnail_path']
           : '',
     );
   }
 
   @override
-  List<Object?> get props => [name, permalink, country, network, image];
+  List<Object?> get props => [name, permalink, country, network, imageUrl];
 }
