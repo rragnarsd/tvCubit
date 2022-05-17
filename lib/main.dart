@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tv_cubit/data/tv_repository.dart';
 import 'package:tv_cubit/screens/home_screen.dart';
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          textTheme: GoogleFonts.latoTextTheme(),
         ),
         home: const HomeScreen(),
       ),
