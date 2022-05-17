@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tv_cubit/bottom_bar.dart';
 import 'package:tv_cubit/data/tv_repository.dart';
-import 'package:tv_cubit/screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           textTheme: GoogleFonts.latoTextTheme(),
         ),
-        home: const HomeScreen(),
+        home: const BottomBar(),
       ),
     );
   }
