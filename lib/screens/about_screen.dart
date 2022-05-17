@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:tv_cubit/models/tv.dart';
 
 class TvShow {
+  TvShow({required this.name, required this.country, required this.iamgeUrl});
+
   final String name;
   final String country;
   final String iamgeUrl;
-
-  TvShow({required this.name, required this.country, required this.iamgeUrl});
 }
 
 class AboutScreen extends StatelessWidget {
@@ -16,23 +16,25 @@ class AboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(
-      children: [
-        Text(tvModel.name),
-        Image.network(tvModel.imageUrl,
-            errorBuilder: (context, error, stackTrace) {
-          return Container(
-            color: Colors.red,
-            child: LayoutBuilder(
-              builder: (context, constraints) => const Icon(
-                Icons.error,
-                color: Colors.white,
+    return SafeArea(
+      child: Scaffold(
+          body: Column(
+        children: [
+          Text(tvModel.name),
+          Image.network(tvModel.imageUrl,
+              errorBuilder: (context, error, stackTrace) {
+            return Container(
+              color: Colors.red,
+              child: LayoutBuilder(
+                builder: (context, constraints) => const Icon(
+                  Icons.error,
+                  color: Colors.white,
+                ),
               ),
-            ),
-          );
-        }),
-      ],
-    ));
+            );
+          }),
+        ],
+      )),
+    );
   }
 }
