@@ -21,6 +21,8 @@ class HomeScreen extends StatelessWidget {
               end: Alignment.topRight,
               colors: [
                 Color(0xff211F1C),
+                Color(0xff605C56),
+                Color(0xff59524F),
                 Color(0xff2f2c28),
               ],
             ),
@@ -52,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ),
                               const Text(
-                                'Timur K',
+                                'Regina',
                                 style: TextStyle(
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.w600,

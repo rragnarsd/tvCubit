@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tv_cubit/data/tv_repository.dart';
 import 'package:tv_cubit/models/tv.dart';
-
-class TvShow {
-  TvShow({required this.name, required this.country, required this.iamgeUrl});
-
-  final String name;
-  final String country;
-  final String iamgeUrl;
-}
+import 'package:tv_cubit/models/tv_info.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({Key? key, required this.tvModel}) : super(key: key);
@@ -18,23 +13,144 @@ class AboutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          body: Column(
+        body: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.bottomLeft,
+              end: Alignment.topRight,
+              colors: [
+                Color(0xff211F1C),
+                Color(0xff605C56),
+                Color(0xff59524F),
+                Color(0xff2f2c28),
+              ],
+            ),
+          ),
+          child: FutureBuilder<TvInfo>(
+              future: TvRepository().getMoreInfo(tvModel.id.toString()),
+              builder: (BuildContext context, AsyncSnapshot<TvInfo> snapshot) {
+                if (snapshot.hasError) {
+                  return const Text('Error loading data');
+                } else if (snapshot.connectionState ==
+                    ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                return buildAboutBody(context, snapshot);
+              }),
+        ),
+      ),
+    );
+  }
+
+  SingleChildScrollView buildAboutBody(
+      BuildContext context, AsyncSnapshot<TvInfo> snapshot) {
+    return SingleChildScrollView(
+      child: Column(
         children: [
-          Text(tvModel.name),
-          Image.network(tvModel.imageUrl,
-              errorBuilder: (context, error, stackTrace) {
-            return Container(
-              color: Colors.red,
-              child: LayoutBuilder(
-                builder: (context, constraints) => const Icon(
-                  Icons.error,
-                  color: Colors.white,
+          Stack(
+            clipBehavior: Clip.none,
+            children: [
+              buildShaderMask(context, snapshot),
+              Positioned(
+                width: MediaQuery.of(context).size.width,
+                bottom: -150 / 2,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(children: [
+                    buildShowImg(snapshot),
+                    const SizedBox(),
+                    buildShowInfo(snapshot)
+                  ]),
                 ),
-              ),
-            );
-          }),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 150 / 2,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Text(
+              snapshot.data!.tvShow!.description!,
+            ),
+          ),
         ],
-      )),
+      ),
+    );
+  }
+
+  SizedBox buildShowImg(AsyncSnapshot<TvInfo> snapshot) {
+    return SizedBox(
+      height: 130,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Image.network(
+          snapshot.data!.tvShow!.imageThumbnailPath!,
+        ),
+      ),
+    );
+  }
+
+  Expanded buildShowInfo(AsyncSnapshot<TvInfo> snapshot) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(
+            snapshot.data!.tvShow!.name!,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+          ),
+          //TODO - iterate over the genres list
+          Text(
+            snapshot.data!.tvShow!.genres!.first,
+            style: const TextStyle(fontSize: 16),
+          ),
+          const SizedBox(height: 5),
+          Row(
+            children: [
+              Text(
+                snapshot.data!.tvShow!.rating!.substring(0, 3),
+                style: const TextStyle(fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(
+                width: 5.0,
+              ),
+              const Icon(
+                FontAwesomeIcons.solidStar,
+                size: 14,
+                color: Colors.yellow,
+              ),
+            ],
+          ),
+        ]),
+      ),
+    );
+  }
+
+  SizedBox buildShaderMask(
+      BuildContext context, AsyncSnapshot<TvInfo> snapshot) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: ShaderMask(
+        shaderCallback: (rect) {
+          return const LinearGradient(
+              begin: Alignment.center,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xff211F1C),
+                Colors.transparent,
+              ]).createShader(
+            Rect.fromLTRB(0, 0, rect.width, rect.height),
+          );
+        },
+        blendMode: BlendMode.dstIn,
+        child: Image.network(
+          snapshot.data!.tvShow!.imagePath!,
+          fit: BoxFit.cover,
+          height: MediaQuery.of(context).size.height * 0.5,
+        ),
+      ),
     );
   }
 }
