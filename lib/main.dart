@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tv_cubit/bottom_bar.dart';
@@ -13,6 +14,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Color(0XFF636260),
+        statusBarBrightness: Brightness.dark,
+      ),
+    );
     return RepositoryProvider(
       create: (context) => TvRepository(),
       child: MaterialApp(

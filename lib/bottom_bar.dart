@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tv_cubit/glassmorphism.dart';
 import 'package:tv_cubit/screens/home_screen.dart';
 
 class BottomBar extends StatefulWidget {
@@ -11,12 +12,6 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<BottomBar> {
   int _selectedIndex = 0;
-  final List<Widget> _list = [
-    const HomeScreen(),
-    const HomeScreen(),
-    const HomeScreen(),
-    const HomeScreen(),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -31,21 +26,30 @@ class _BottomBarState extends State<BottomBar> {
               borderRadius: const BorderRadius.all(
                 Radius.circular(30),
               ),
-              child: BottomNavigationBar(
-                currentIndex: _selectedIndex,
-                selectedItemColor: Colors.white,
-                type: BottomNavigationBarType.fixed,
-                iconSize: 16.0,
-                unselectedItemColor: Colors.grey,
-                showSelectedLabels: false,
-                showUnselectedLabels: false,
-                backgroundColor: Colors.black,
-                onTap: (int index) {
-                  setState(() {
-                    _selectedIndex = index;
-                  });
-                },
-                items: items,
+              child: GlassMorphism(
+                blur: 20,
+                opacity: 0.7,
+                radius: BorderRadius.circular(30),
+                border: Border.all(
+                  width: 1.5,
+                  color: Colors.brown.withOpacity(0.2),
+                ),
+                child: BottomNavigationBar(
+                  backgroundColor: Colors.transparent,
+                  currentIndex: _selectedIndex,
+                  selectedItemColor: Colors.white,
+                  type: BottomNavigationBarType.fixed,
+                  iconSize: 18.0,
+                  unselectedItemColor: Colors.grey,
+                  showSelectedLabels: false,
+                  showUnselectedLabels: false,
+                  onTap: (int index) {
+                    setState(() {
+                      _selectedIndex = index;
+                    });
+                  },
+                  items: items,
+                ),
               ),
             ),
           ),
@@ -75,5 +79,13 @@ class _BottomBarState extends State<BottomBar> {
       icon: FaIcon(FontAwesomeIcons.user),
       label: 'Person',
     ),
+  ];
+
+  final List<Widget> _list = [
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
   ];
 }

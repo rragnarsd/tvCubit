@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tv_cubit/glassmorphism.dart';
 import 'package:tv_cubit/screens/about_screen.dart';
 
 import '../cubit/tv_cubit.dart';
@@ -13,69 +14,89 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color(0xff211F1C),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        const CircleAvatar(backgroundColor: Color(0xffC18E69)),
-                        const SizedBox(
-                          width: 10.0,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Hello,',
-                              style: TextStyle(
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.bottomLeft,
+              end: Alignment.topRight,
+              colors: [
+                Color(0xff211F1C),
+                Color(0xff2f2c28),
+              ],
+            ),
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          const CircleAvatar(
+                            backgroundColor: Color(0xffC18E69),
+                          ),
+                          const SizedBox(
+                            width: 10.0,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Hello,',
+                                style: TextStyle(
                                   fontSize: 14.0,
-                                  color: Colors.white.withOpacity(0.5)),
-                            ),
-                            const Text(
-                              'Timur K',
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white,
+                                  color: Colors.white.withOpacity(0.5),
+                                ),
                               ),
+                              const Text(
+                                'Timur K',
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      GlassMorphism(
+                        blur: 20,
+                        opacity: 1,
+                        radius: BorderRadius.circular(12.0),
+                        border: Border.all(
+                          width: 1.5,
+                          color: Colors.brown.withOpacity(0.2),
+                        ),
+                        child: SizedBox(
+                          width: 40,
+                          height: 40,
+                          child: Center(
+                            child: FaIcon(
+                              FontAwesomeIcons.bell,
+                              size: 18.0,
+                              color: Colors.white.withOpacity(0.6),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12.0),
-                        color: Colors.white.withOpacity(0.8),
-                      ),
-                      child: const Center(
-                        child: FaIcon(
-                          FontAwesomeIcons.bell,
-                          size: 18.0,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 15.0,
-              ),
-              BlocProvider(
-                create: (_) => TvCubit(
-                    tvRepository: RepositoryProvider.of<TvRepository>(context))
-                  ..getTvShows(),
-                child: TvList(),
-              ),
-            ],
+                const SizedBox(
+                  height: 15.0,
+                ),
+                BlocProvider(
+                  create: (_) => TvCubit(
+                    tvRepository: RepositoryProvider.of<TvRepository>(context),
+                  )..getTvShows(),
+                  child: TvList(),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -151,20 +172,27 @@ class TvList extends StatelessWidget {
                             ),
                             Positioned(
                               bottom: 0.0,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color:
-                                      const Color(0xff564F4A).withOpacity(0.8),
+                              child: GlassMorphism(
+                                blur: 20,
+                                opacity: 0.5,
+                                radius: BorderRadius.zero,
+                                border: Border.all(
+                                  width: 0,
+                                  color: Colors.brown.withOpacity(0.2),
                                 ),
-                                width: MediaQuery.of(context).size.width / 2.5,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Center(
-                                    child: Text(
-                                      state.tvList![index].name,
-                                      style:
-                                          const TextStyle(color: Colors.white),
-                                      textAlign: TextAlign.center,
+                                child: SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width / 2.5,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Center(
+                                      child: Text(
+                                        state.tvList![index].name,
+                                        maxLines: 1,
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                        textAlign: TextAlign.center,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -197,7 +225,7 @@ class TvList extends StatelessWidget {
     );
   }
 
-  List<String> items = [
+  final List<String> items = [
     'TV Shows',
     'Drama',
     'Anime',
