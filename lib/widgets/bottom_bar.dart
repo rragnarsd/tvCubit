@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tv_cubit/glassmorphism.dart';
 import 'package:tv_cubit/screens/home_screen.dart';
+
+import 'glassmorphism.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);

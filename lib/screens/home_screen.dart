@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tv_cubit/glassmorphism.dart';
 import 'package:tv_cubit/screens/about_screen.dart';
 
 import '../cubit/tv_cubit.dart';
 import '../data/tv_repository.dart';
 import '../utils/constants.dart';
 import '../widgets/appbar.dart';
+import '../widgets/glassmorphism.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -121,10 +121,13 @@ class TvList extends StatelessWidget {
         borderRadius: const BorderRadius.all(Radius.circular(12.0)),
         child: InkWell(
           child: Stack(children: [
-            Image.network(
-              state.tvList![index].imageUrl,
-              fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width / 2.5,
+            Hero(
+              tag: Text('btn'),
+              child: Image.network(
+                state.tvList![index].imageUrl,
+                fit: BoxFit.cover,
+                width: MediaQuery.of(context).size.width / 2.5,
+              ),
             ),
             buildTvGridText(context, state, index),
           ]),

@@ -5,11 +5,51 @@ import 'package:tv_cubit/models/tv.dart';
 import 'package:tv_cubit/models/tv_info.dart';
 
 import '../utils/constants.dart';
+import '../widgets/btn_with_extra_border.dart';
 
-class AboutScreen extends StatelessWidget {
+class AboutScreen extends StatefulWidget {
   const AboutScreen({Key? key, required this.tvModel}) : super(key: key);
 
   final TvModel tvModel;
+
+  @override
+  State<AboutScreen> createState() => _AboutScreenState();
+}
+
+class _AboutScreenState extends State<AboutScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  Animation<double>? title;
+  Animation<double>? genre;
+  Animation<double>? rating;
+  Animation<double>? description;
+  Animation<double>? button;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        AnimationController(vsync: this, duration: const Duration(seconds: 2));
+
+    title = Tween<double>(begin: 0, end: 1).animate(
+        CurvedAnimation(parent: _controller, curve: const Interval(0, 0.3)));
+    genre = Tween<double>(begin: 0, end: 1).animate(
+        CurvedAnimation(parent: _controller, curve: const Interval(0.3, 0.4)));
+    rating = Tween<double>(begin: 0, end: 1).animate(
+        CurvedAnimation(parent: _controller, curve: const Interval(0.4, 0.6)));
+    description = Tween<double>(begin: 0, end: 1).animate(
+        CurvedAnimation(parent: _controller, curve: const Interval(0.6, 0.8)));
+    button = Tween<double>(begin: 0, end: 1).animate(
+        CurvedAnimation(parent: _controller, curve: const Interval(0.8, 1)));
+
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +59,7 @@ class AboutScreen extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           decoration: kBoxDecorationWithGradient,
           child: FutureBuilder<TvInfo>(
-              future: TvRepository().getMoreInfo(tvModel.id.toString()),
+              future: TvRepository().getMoreInfo(widget.tvModel.id.toString()),
               builder: (BuildContext context, AsyncSnapshot<TvInfo> snapshot) {
                 if (snapshot.hasError) {
                   return const Text('Error loading data');
@@ -60,30 +100,25 @@ class AboutScreen extends StatelessWidget {
           const SizedBox(
             height: 150 / 2,
           ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Text(
-              snapshot.data!.tvShow!.description!,
-              style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                    color: Colors.white.withOpacity(0.7),
-                  ),
-            ),
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.9,
-            child: ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                'Watch',
-                style: Theme.of(context).textTheme.headline6!.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 1),
-              ),
-            ),
-          ),
+          buildShowDesc(snapshot, context),
+          FadeTransition(opacity: button!, child: const BtnWithExtraBorder()),
           const SizedBox(height: 20),
         ],
+      ),
+    );
+  }
+
+  Padding buildShowDesc(AsyncSnapshot<TvInfo> snapshot, BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: FadeTransition(
+        opacity: description!,
+        child: Text(
+          snapshot.data!.tvShow!.description!,
+          style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                color: Colors.white.withOpacity(0.7),
+              ),
+        ),
       ),
     );
   }
@@ -93,8 +128,11 @@ class AboutScreen extends StatelessWidget {
       height: 130,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
-        child: Image.network(
-          snapshot.data!.tvShow!.imageThumbnailPath!,
+        child: Hero(
+          tag: Text('btn'),
+          child: Image.network(
+            snapshot.data!.tvShow!.imageThumbnailPath!,
+          ),
         ),
       ),
     );
@@ -105,44 +143,51 @@ class AboutScreen extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(
-            snapshot.data!.tvShow!.name!,
-            style: Theme.of(context)
-                .textTheme
-                .headline4!
-                .copyWith(fontWeight: FontWeight.w600, color: Colors.white),
+          FadeTransition(
+            opacity: title!,
+            child: Text(
+              snapshot.data!.tvShow!.name!,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline4!
+                  .copyWith(fontWeight: FontWeight.w600, color: Colors.white),
+            ),
           ),
-          Row(
-            children: [
-              for (var show in snapshot.data!.tvShow!.genres!)
-                Text(
-                  '$show, ',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2!
-                      .copyWith(color: Colors.white60),
-                ),
-            ],
+          FadeTransition(
+            opacity: genre!,
+            child: Row(
+              children: [
+                for (var show in snapshot.data!.tvShow!.genres!)
+                  Text(
+                    '$show, ',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2!
+                        .copyWith(color: Colors.white60),
+                  ),
+              ],
+            ),
           ),
           const SizedBox(height: 5),
-          Row(
-            children: [
-              Text(
-                snapshot.data!.tvShow!.rating!.substring(0, 3),
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6!
-                    .copyWith(fontWeight: FontWeight.w600, color: Colors.white),
-              ),
-              const SizedBox(
-                width: 5.0,
-              ),
-              const Icon(
-                FontAwesomeIcons.solidStar,
-                size: 14,
-                color: Colors.yellow,
-              ),
-            ],
+          FadeTransition(
+            opacity: rating!,
+            child: Row(
+              children: [
+                Text(
+                  snapshot.data!.tvShow!.rating!.substring(0, 3),
+                  style: Theme.of(context).textTheme.headline6!.copyWith(
+                      fontWeight: FontWeight.w600, color: Colors.white),
+                ),
+                const SizedBox(
+                  width: 5.0,
+                ),
+                const Icon(
+                  FontAwesomeIcons.solidStar,
+                  size: 14,
+                  color: Colors.yellow,
+                ),
+              ],
+            ),
           ),
         ]),
       ),
