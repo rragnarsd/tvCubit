@@ -29,7 +29,7 @@ class Appbar extends StatelessWidget {
                   Text(
                     'Hello,',
                     style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                          color: Colors.white.withOpacity(0.5),
+                          color: Colors.white.withOpacity(0.7),
                         ),
                   ),
                   Text(
@@ -56,7 +56,7 @@ class Appbar extends StatelessWidget {
                 child: FaIcon(
                   FontAwesomeIcons.bell,
                   size: 18.0,
-                  color: Colors.white.withOpacity(0.6),
+                  color: Colors.white.withOpacity(0.7),
                 ),
               ),
             ),

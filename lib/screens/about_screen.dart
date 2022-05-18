@@ -64,9 +64,25 @@ class AboutScreen extends StatelessWidget {
             padding: const EdgeInsets.all(20.0),
             child: Text(
               snapshot.data!.tvShow!.description!,
-              style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    color: Colors.white.withOpacity(0.7),
+                  ),
             ),
           ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.9,
+            child: ElevatedButton(
+              onPressed: () {},
+              child: Text(
+                'Watch',
+                style: Theme.of(context).textTheme.headline6!.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 1),
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
         ],
       ),
     );
@@ -94,11 +110,20 @@ class AboutScreen extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .headline4!
-                .copyWith(fontWeight: FontWeight.w600, color: Colors.black),
+                .copyWith(fontWeight: FontWeight.w600, color: Colors.white),
           ),
-          //TODO - iterate over the genres list
-          Text(snapshot.data!.tvShow!.genres!.first,
-              style: Theme.of(context).textTheme.headline6),
+          Row(
+            children: [
+              for (var show in snapshot.data!.tvShow!.genres!)
+                Text(
+                  '$show, ',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText2!
+                      .copyWith(color: Colors.white60),
+                ),
+            ],
+          ),
           const SizedBox(height: 5),
           Row(
             children: [
@@ -107,7 +132,7 @@ class AboutScreen extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .headline6!
-                    .copyWith(fontWeight: FontWeight.w600),
+                    .copyWith(fontWeight: FontWeight.w600, color: Colors.white),
               ),
               const SizedBox(
                 width: 5.0,
