@@ -28,19 +28,15 @@ class Appbar extends StatelessWidget {
                 children: [
                   Text(
                     'Hello,',
-                    style: TextStyle(
-                      fontSize: 14.0,
-                      color: Colors.white.withOpacity(0.5),
-                    ),
+                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                          color: Colors.white.withOpacity(0.5),
+                        ),
                   ),
-                  const Text(
+                  Text(
                     'Regina',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
+                    style: Theme.of(context).textTheme.headline6!.copyWith(
+                        color: Colors.white, fontWeight: FontWeight.w600),
+                  )
                 ],
               ),
             ],

@@ -4,6 +4,8 @@ import 'package:tv_cubit/data/tv_repository.dart';
 import 'package:tv_cubit/models/tv.dart';
 import 'package:tv_cubit/models/tv_info.dart';
 
+import '../utils/constants.dart';
+
 class AboutScreen extends StatelessWidget {
   const AboutScreen({Key? key, required this.tvModel}) : super(key: key);
 
@@ -15,18 +17,7 @@ class AboutScreen extends StatelessWidget {
       child: Scaffold(
         body: Container(
           height: MediaQuery.of(context).size.height,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.bottomLeft,
-              end: Alignment.topRight,
-              colors: [
-                Color(0xff211F1C),
-                Color(0xff605C56),
-                Color(0xff59524F),
-                Color(0xff2f2c28),
-              ],
-            ),
-          ),
+          decoration: kBoxDecorationWithGradient,
           child: FutureBuilder<TvInfo>(
               future: TvRepository().getMoreInfo(tvModel.id.toString()),
               builder: (BuildContext context, AsyncSnapshot<TvInfo> snapshot) {
@@ -60,7 +51,7 @@ class AboutScreen extends StatelessWidget {
                   child: Row(children: [
                     buildShowImg(snapshot),
                     const SizedBox(),
-                    buildShowInfo(snapshot)
+                    buildShowInfo(snapshot, context)
                   ]),
                 ),
               )
@@ -73,6 +64,7 @@ class AboutScreen extends StatelessWidget {
             padding: const EdgeInsets.all(20.0),
             child: Text(
               snapshot.data!.tvShow!.description!,
+              style: Theme.of(context).textTheme.bodyText2,
             ),
           ),
         ],
@@ -92,26 +84,30 @@ class AboutScreen extends StatelessWidget {
     );
   }
 
-  Expanded buildShowInfo(AsyncSnapshot<TvInfo> snapshot) {
+  Expanded buildShowInfo(AsyncSnapshot<TvInfo> snapshot, context) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             snapshot.data!.tvShow!.name!,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+            style: Theme.of(context)
+                .textTheme
+                .headline4!
+                .copyWith(fontWeight: FontWeight.w600, color: Colors.black),
           ),
           //TODO - iterate over the genres list
-          Text(
-            snapshot.data!.tvShow!.genres!.first,
-            style: const TextStyle(fontSize: 16),
-          ),
+          Text(snapshot.data!.tvShow!.genres!.first,
+              style: Theme.of(context).textTheme.headline6),
           const SizedBox(height: 5),
           Row(
             children: [
               Text(
                 snapshot.data!.tvShow!.rating!.substring(0, 3),
-                style: const TextStyle(fontWeight: FontWeight.w600),
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6!
+                    .copyWith(fontWeight: FontWeight.w600),
               ),
               const SizedBox(
                 width: 5.0,

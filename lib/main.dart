@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:tv_cubit/bottom_bar.dart';
 import 'package:tv_cubit/data/tv_repository.dart';
+import 'package:tv_cubit/themes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,12 +23,9 @@ class MyApp extends StatelessWidget {
     return RepositoryProvider(
       create: (context) => TvRepository(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Tv Cubit',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          textTheme: GoogleFonts.latoTextTheme(),
-        ),
+        theme: CustomTheme.lightTheme,
         home: const BottomBar(),
       ),
     );
