@@ -94,8 +94,7 @@ class TvList extends StatelessWidget {
           itemBuilder: (context, index) => Text(
             items[index],
             style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                  color: Colors.white.withOpacity(0.8),
-                ),
+                color: Colors.white.withOpacity(0.6), letterSpacing: 1),
           ),
         ),
       ),
@@ -171,7 +170,7 @@ class TvList extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .bodyText2!
-                    .copyWith(color: Colors.white),
+                    .copyWith(color: Colors.white.withOpacity(0.8)),
                 textAlign: TextAlign.center,
               ),
             ),

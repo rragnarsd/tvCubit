@@ -37,7 +37,7 @@ class BtnWithExtraBorder extends StatelessWidget {
             child: Text(
               'Watch',
               style: Theme.of(context).textTheme.headline6!.copyWith(
-                  color: Colors.white,
+                  color: Colors.white.withOpacity(0.8),
                   fontWeight: FontWeight.w500,
                   letterSpacing: 1),
             ),
