@@ -115,32 +115,35 @@ class TvList extends StatelessWidget {
     ]);
   }
 
-  Center buildTvGridItem(TvState state, int index, BuildContext context) {
-    return Center(
-      child: ClipRRect(
-        borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-        child: InkWell(
-          child: Stack(children: [
-            Hero(
-              tag: Text('btn'),
-              child: Image.network(
-                state.tvList![index].imageUrl,
-                fit: BoxFit.cover,
-                width: MediaQuery.of(context).size.width / 2.5,
-              ),
-            ),
-            buildTvGridText(context, state, index),
-          ]),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => AboutScreen(
-                  tvModel: state.tvList![index],
+  Container buildTvGridItem(TvState state, int index, BuildContext context) {
+    return Container(
+      decoration: kBoxShadow,
+      child: Center(
+        child: ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+          child: InkWell(
+            child: Stack(children: [
+              Hero(
+                tag: Text('btn'),
+                child: Image.network(
+                  state.tvList![index].imageUrl,
+                  fit: BoxFit.cover,
+                  width: MediaQuery.of(context).size.width / 2.5,
                 ),
               ),
-            );
-          },
+              buildTvGridText(context, state, index),
+            ]),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AboutScreen(
+                    tvModel: state.tvList![index],
+                  ),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

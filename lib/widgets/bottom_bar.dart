@@ -41,7 +41,7 @@ class _BottomBarState extends State<BottomBar> {
                   selectedItemColor: Colors.white,
                   type: BottomNavigationBarType.fixed,
                   iconSize: 18.0,
-                  unselectedItemColor: Colors.grey,
+                  unselectedItemColor: Colors.white.withOpacity(0.4),
                   showSelectedLabels: false,
                   showUnselectedLabels: false,
                   onTap: (int index) {

@@ -123,8 +123,9 @@ class _AboutScreenState extends State<AboutScreen>
     );
   }
 
-  SizedBox buildShowImg(AsyncSnapshot<TvInfo> snapshot) {
-    return SizedBox(
+  Container buildShowImg(AsyncSnapshot<TvInfo> snapshot) {
+    return Container(
+      decoration: kBoxShadow,
       height: 130,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../utils/constants.dart';
 import 'glassmorphism.dart';
 
 class Appbar extends StatelessWidget {
@@ -48,8 +49,11 @@ class Appbar extends StatelessWidget {
   Row buildLeftSide(BuildContext context) {
     return Row(
       children: [
-        const CircleAvatar(
-          backgroundColor: Color(0xffC18E69),
+        Container(
+          decoration: kBoxShadow,
+          child: const CircleAvatar(
+            backgroundColor: Color(0xffC18E69),
+          ),
         ),
         const SizedBox(
           width: 10.0,

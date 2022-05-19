@@ -12,3 +12,17 @@ const kBoxDecorationWithGradient = BoxDecoration(
     ],
   ),
 );
+
+final kBoxShadow = BoxDecoration(
+  borderRadius: BorderRadius.circular(12),
+  boxShadow: [
+    BoxShadow(
+      color: const Color(0xff211F1C).withOpacity(0.4),
+      offset: const Offset(
+        3.0,
+        3.0,
+      ),
+      blurRadius: 10.0,
+    ), //BoxShadow
+  ],
+);
