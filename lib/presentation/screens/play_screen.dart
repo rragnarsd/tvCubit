@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tv_cubit/presentation/widgets/glassmorphism.dart';
+import 'package:tv_cubit/utils/constants.dart';
 
 import '../widgets/btn_with_extra_border.dart';
 
@@ -53,18 +54,21 @@ class _PlayScreenState extends State<PlayScreen>
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Stack(
-          clipBehavior: Clip.none,
-          alignment: Alignment.center,
-          children: [
-            buildShowImg(context),
-            buildShowInfo(context),
-            buildShowTitle(context),
-            buildShowAbout(),
-            buildShowEpisode(context),
-            buildShowProgress(context),
-            buildShowBtn()
-          ],
+        body: Container(
+          // decoration: kBoxDecorationWithGradient,
+          child: Stack(
+            clipBehavior: Clip.none,
+            alignment: Alignment.center,
+            children: [
+              buildShowImg(context),
+              buildShowInfo(context),
+              buildShowTitle(context),
+              buildShowAbout(),
+              buildShowEpisode(context),
+              buildShowProgress(context),
+              buildShowBtn()
+            ],
+          ),
         ),
       ),
     );

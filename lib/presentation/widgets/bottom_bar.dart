@@ -4,6 +4,7 @@ import 'package:tv_cubit/presentation/screens/search_screen.dart';
 
 import '../screens/home_screen.dart';
 import '../screens/play_screen.dart';
+import '../screens/profile_screen.dart';
 import 'glassmorphism.dart';
 
 class BottomBar extends StatefulWidget {
@@ -89,6 +90,6 @@ class _BottomBarState extends State<BottomBar> {
     const PlayScreen(),
     const SearchScreen(),
     const HomeScreen(),
-    const HomeScreen(),
+    const ProfileScreen(),
   ];
 }
