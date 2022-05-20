@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tv_cubit/screens/about_screen.dart';
+import 'package:tv_cubit/cubit/tv_cubit.dart';
 
-import '../cubit/tv_cubit.dart';
-import '../data/tv_repository.dart';
-import '../utils/constants.dart';
+import '../../data/repositories/tv_repository.dart';
+import '../../utils/constants.dart';
 import '../widgets/appbar.dart';
 import '../widgets/glassmorphism.dart';
+import 'about_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

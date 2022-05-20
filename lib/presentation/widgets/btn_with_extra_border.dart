@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils/constants.dart';
+import '../../utils/constants.dart';
 
 class BtnWithExtraBorder extends StatelessWidget {
   const BtnWithExtraBorder({

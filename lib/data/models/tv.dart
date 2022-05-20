@@ -4,8 +4,6 @@ class TvModel extends Equatable {
   final int id;
   final String name;
   final String permalink;
-  // final DateTime startDate;
-  // final DateTime endDate;
   final String country;
   final String network;
   final String imageUrl;
@@ -14,8 +12,6 @@ class TvModel extends Equatable {
     required this.id,
     required this.name,
     required this.permalink,
-    // required this.startDate,
-    // required this.endDate,
     required this.country,
     required this.network,
     required this.imageUrl,
@@ -29,8 +25,7 @@ class TvModel extends Equatable {
       permalink: data.containsKey('permalink') && data['permalink'] != null
           ? data['permalink']
           : '',
-      // startDate: data['startDate'],
-      // endDate: data['endDate'],
+
       country: data.containsKey('country') && data['country'] != null
           ? data['country']
           : '',

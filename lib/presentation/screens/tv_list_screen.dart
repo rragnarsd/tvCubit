@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../cubit/tv_cubit.dart';
+import '../../cubit/tv_cubit.dart';
 import '../widgets/glassmorphism.dart';
 import 'about_screen.dart';
 

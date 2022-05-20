@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tv_cubit/data/tv_repository.dart';
+import 'package:tv_cubit/data/repositories/tv_repository.dart';
+import 'package:tv_cubit/presentation/widgets/bottom_bar.dart';
 import 'package:tv_cubit/themes.dart';
 
-import 'widgets/bottom_bar.dart';
 
 void main() {
   runApp(const MyApp());
