@@ -100,7 +100,9 @@ class _AboutScreenState extends State<AboutScreen>
             height: 150 / 2,
           ),
           buildShowDesc(snapshot, context),
-          FadeTransition(opacity: button!, child: const BtnWithExtraBorder()),
+          FadeTransition(
+              opacity: button!,
+              child: const BtnWithExtraBorder(btnText: 'Watch')),
           const SizedBox(height: 20),
         ],
       ),

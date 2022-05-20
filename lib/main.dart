@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Color(0XFF636260),
-        statusBarBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.dark, 
       ),
     );
     return RepositoryProvider(

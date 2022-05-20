@@ -17,7 +17,19 @@ class TvCubit extends Cubit<TvState> {
     emit(state.copyWith(status: TvStatus.loading));
 
     try {
-      final tvShows = await tvRepository.getMovies();
+      final tvShows = await tvRepository.getTvShows();
+      tv.addAll(tvShows);
+      emit(state.copyWith(status: TvStatus.success, tvList: tvShows));
+    } on Exception catch (exception) {
+      emit(state.copyWith(status: TvStatus.failure, exception: exception));
+    }
+  }
+
+  Future<void> getPopularTvShows() async {
+    emit(state.copyWith(status: TvStatus.loading));
+
+    try {
+      final tvShows = await tvRepository.getPopularTvShows();
       tv.addAll(tvShows);
       emit(state.copyWith(status: TvStatus.success, tvList: tvShows));
     } on Exception catch (exception) {
@@ -36,14 +48,15 @@ class TvCubit extends Cubit<TvState> {
     }
   }
 
-  // Future<void> searchTvShow() async {
-  //   emit(state.copyWith(status: TvStatus.loading));
+  final List<dynamic> items = [];
+  Future<void> searchTvShow() async {
+    emit(state.copyWith(status: TvStatus.loading));
 
-  //   try {
-  //     await tvRepository.searchTvShows(query);
-  //     emit(state.copyWith(status: TvStatus.success));
-  //   } on Exception catch (exception) {
-  //     emit(state.copyWith(status: TvStatus.failure, exception: exception));
-  //   }
-  // }
+    try {
+      await tvRepository.searchTvShows(query);
+      emit(state.copyWith(status: TvStatus.success));
+    } on Exception catch (exception) {
+      emit(state.copyWith(status: TvStatus.failure, exception: exception));
+    }
+  }
 }

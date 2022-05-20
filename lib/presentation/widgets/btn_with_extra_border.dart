@@ -5,7 +5,10 @@ import '../../utils/constants.dart';
 class BtnWithExtraBorder extends StatelessWidget {
   const BtnWithExtraBorder({
     Key? key,
+    required this.btnText,
   }) : super(key: key);
+
+  final String btnText;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,7 @@ class BtnWithExtraBorder extends StatelessWidget {
             ),
             onPressed: () {},
             child: Text(
-              'Watch',
+              btnText,
               style: Theme.of(context).textTheme.headline6!.copyWith(
                   color: Colors.white.withOpacity(0.8),
                   fontWeight: FontWeight.w500,

@@ -39,6 +39,6 @@ class CustomTheme {
         fontSize: 12.0,
       ),
     ),
-    scaffoldBackgroundColor: const Color(0xFFFFFFFF),
+    scaffoldBackgroundColor: const Color(0xff605C56),
   );
 }

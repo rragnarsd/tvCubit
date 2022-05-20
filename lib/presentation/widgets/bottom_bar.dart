@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tv_cubit/presentation/screens/search_screen.dart';
 
 import '../screens/home_screen.dart';
+import '../screens/play_screen.dart';
 import 'glassmorphism.dart';
 
 class BottomBar extends StatefulWidget {
@@ -85,7 +86,7 @@ class _BottomBarState extends State<BottomBar> {
 
   final List<Widget> _list = [
     const HomeScreen(),
-    const HomeScreen(),
+    const PlayScreen(),
     const SearchScreen(),
     const HomeScreen(),
     const HomeScreen(),

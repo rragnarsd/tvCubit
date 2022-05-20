@@ -13,24 +13,28 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          decoration: kBoxDecorationWithGradient,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const Appbar(),
-                const SizedBox(
-                  height: 15.0,
-                ),
-                BlocProvider(
-                  create: (_) => TvCubit(
-                    tvRepository: RepositoryProvider.of<TvRepository>(context),
-                  )..getTvShows(),
-                  child: TvList(),
-                ),
-              ],
+    return Container(
+      decoration: kBoxDecorationWithGradient,
+      child: SafeArea(
+        child: Scaffold(
+          body: Container(
+            decoration: kBoxDecorationWithGradient,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const Appbar(),
+                  const SizedBox(
+                    height: 15.0,
+                  ),
+                  BlocProvider(
+                    create: (_) => TvCubit(
+                      tvRepository:
+                          RepositoryProvider.of<TvRepository>(context),
+                    )..getTvShows(),
+                    child: TvList(),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -50,7 +54,11 @@ class TvList extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: BlocConsumer<TvCubit, TvState>(
         listener: (context, state) {
-          if (state.status == TvStatus.success) {
+          if (state.status == TvStatus.success) {}
+          if (state.status == TvStatus.loading) {
+            const Center(
+              child: CircularProgressIndicator(),
+            );
           } else if (state.status == TvStatus.failure) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -63,8 +71,11 @@ class TvList extends StatelessWidget {
           return BlocBuilder<TvCubit, TvState>(builder: (context, state) {
             switch (state.status) {
               case TvStatus.loading:
-                return const Center(
-                  child: CircularProgressIndicator(),
+                return Container(
+                  decoration: kBoxDecorationWithGradient,
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 );
               case TvStatus.initial:
               case TvStatus.success:
