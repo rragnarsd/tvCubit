@@ -1,6 +1,23 @@
-# tv_cubit
+# :tv: Tv-Show Cubit :movie_camera:
 
-A new Flutter project.
+## :package: Packages
+- Google_Fonts - https://pub.dev/packages/google_fonts
+- Equatable - https://pub.dev/packages/equatable
+- Flutter_Bloc - https://pub.dev/packages/flutter_bloc
+- HTTP - https://pub.dev/packages/http
+- Font_Awesome - https://pub.dev/packages/font_awesome_flutter
+
+## :art: Design
+- Ideas from projects I've seen online, sprinkled with personal touch
+- The "PlayScreen" has hardcoded data - with an image from my favorite TvShow of all time! Vis a Vis or Locked Up :boom:
+- Font Family: Lato
+- Images are from:
+  - www.pexels.com
+  - https://browsecat.net/tv-shows/vis-vis-wallpapers
+
+## :bulb: Challenges
+- This is my first time working with Bloc/Cubits :fire:
+- First time working with animations, would love to learn and work more with that! :construction_worker:
 
 ## Getting Started
 
