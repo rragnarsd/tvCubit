@@ -36,12 +36,11 @@ class TvCubit extends Cubit<TvState> {
     }
   }
 
-  final List<dynamic> items = [];
   Future<void> searchTvShow() async {
     emit(state.copyWith(status: TvStatus.loading));
 
     try {
-      var data = await tvRepository.searchTvShows(query);
+      List<TvModel> data = await tvRepository.searchTvShows(query);
       emit(state.copyWith(status: TvStatus.success, tvList: data));
     } on Exception catch (exception) {
       emit(state.copyWith(status: TvStatus.failure, exception: exception));

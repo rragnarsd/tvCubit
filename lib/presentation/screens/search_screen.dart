@@ -175,17 +175,21 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: ListTile(
                     contentPadding: EdgeInsets.zero,
                     title: Text(
-                      e.name ?? '',
+                      e.name,
                       style: TextStyle(color: Colors.white.withOpacity(0.8)),
                     ),
-                    leading: SizedBox(
-                      width: 80,
-                      child: Image.network(
-                        e.imageUrl,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return const Placeholder();
-                        },
+                    leading: Container(
+                      decoration: kBoxShadow,
+                      width: 100,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                          e.imageUrl,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Placeholder();
+                          },
+                        ),
                       ),
                     ),
                   ),

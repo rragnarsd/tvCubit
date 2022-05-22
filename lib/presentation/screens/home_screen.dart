@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tv_cubit/cubit/tv_cubit.dart';
+import 'package:tv_cubit/presentation/widgets/app_bar.dart';
 
 import '../../data/repositories/tv_repository.dart';
 import '../../utils/constants.dart';
-import '../widgets/appbar.dart';
 import '../widgets/glassmorphism.dart';
 import 'about_screen.dart';
 

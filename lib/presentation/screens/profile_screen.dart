@@ -37,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             ProfileTile(
               text: 'Switch Theme',
-              iconLeft: FontAwesomeIcons.user,
+              iconLeft: FontAwesomeIcons.lightbulb,
               widget: CupertinoSwitch(
                 activeColor: const Color(0xffE7A71A),
                 value: _switch,

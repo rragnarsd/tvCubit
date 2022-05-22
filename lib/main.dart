@@ -5,7 +5,6 @@ import 'package:tv_cubit/data/repositories/tv_repository.dart';
 import 'package:tv_cubit/presentation/widgets/bottom_bar.dart';
 import 'package:tv_cubit/themes.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Color(0XFF636260),
-        statusBarBrightness: Brightness.dark, 
+        statusBarBrightness: Brightness.dark,
       ),
     );
     return RepositoryProvider(
