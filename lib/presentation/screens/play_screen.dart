@@ -53,8 +53,7 @@ class _PlayScreenState extends State<PlayScreen>
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          // decoration: kBoxDecorationWithGradient,
+        body: SizedBox(
           child: Stack(
             clipBehavior: Clip.none,
             alignment: Alignment.center,
@@ -115,12 +114,12 @@ class _PlayScreenState extends State<PlayScreen>
           children: [
             buildTextPlay(
               context,
-              'S1 : E1 "Episode 1: Arrow',
+              'S1 : E1 "Episode 1: Un mal día',
             ),
-            const SizedBox(width: 165),
+            const SizedBox(width: 140),
             buildTextPlay(
               context,
-              '60 min',
+              '53 min',
             ),
           ],
         ),

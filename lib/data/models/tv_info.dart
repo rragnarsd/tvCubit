@@ -35,7 +35,6 @@ class TvShow {
   String? imageThumbnailPath;
   String? rating;
   String? ratingCount;
-  //String? countdown;
   List<String>? genres;
   List<String>? pictures;
   List<Episodes>? episodes;
@@ -81,7 +80,6 @@ class TvShow {
     imageThumbnailPath = json['image_thumbnail_path'];
     rating = json['rating'];
     ratingCount = json['rating_count'];
-    //countdown = json['countdown'];
     genres = json['genres'].cast<String>();
     pictures = json['pictures'].cast<String>();
     if (json['episodes'] != null) {
@@ -111,7 +109,6 @@ class TvShow {
     data['image_thumbnail_path'] = imageThumbnailPath;
     data['rating'] = rating;
     data['rating_count'] = ratingCount;
-    // data['countdown'] = this.countdown;
     data['genres'] = genres;
     data['pictures'] = pictures;
     if (episodes != null) {

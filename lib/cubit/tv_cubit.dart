@@ -41,8 +41,8 @@ class TvCubit extends Cubit<TvState> {
     emit(state.copyWith(status: TvStatus.loading));
 
     try {
-      await tvRepository.searchTvShows(query);
-      emit(state.copyWith(status: TvStatus.success));
+      var data = await tvRepository.searchTvShows(query);
+      emit(state.copyWith(status: TvStatus.success, tvList: data));
     } on Exception catch (exception) {
       emit(state.copyWith(status: TvStatus.failure, exception: exception));
     }

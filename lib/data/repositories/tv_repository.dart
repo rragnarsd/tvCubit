@@ -30,10 +30,6 @@ class TvRepository {
     }
   }
 
-
-
-  late List<dynamic> items = [];
-
   Future<List<TvModel>> searchTvShows(String query) async {
     final response = await http
         .get(Uri.parse('https://www.episodate.com/api/search?q=$query'));
@@ -41,11 +37,7 @@ class TvRepository {
       final result = jsonDecode(response.body);
 
       Iterable list = result['tv_shows'];
-      // items.addAll(list);
-      // setState(() {
-      //   items = list as List<dynamic>;
-      // });
-    
+
       return list.map((e) => TvModel.fromJson(e)).toList();
     } else {
       throw Exception();
