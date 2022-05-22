@@ -27,8 +27,8 @@ class _AboutScreenState extends State<AboutScreen>
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 2));
+    _controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1200));
 
     title = Tween<double>(begin: 0, end: 1).animate(
         CurvedAnimation(parent: _controller, curve: const Interval(0, 0.3)));

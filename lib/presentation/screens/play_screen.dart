@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tv_cubit/presentation/widgets/glassmorphism.dart';
-import 'package:tv_cubit/utils/constants.dart';
 
 import '../widgets/btn_with_extra_border.dart';
 
@@ -25,8 +24,8 @@ class _PlayScreenState extends State<PlayScreen>
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 2));
+    _controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1200));
 
     season = Tween<double>(begin: 0, end: 1).animate(
         CurvedAnimation(parent: _controller, curve: const Interval(0, 0.3)));

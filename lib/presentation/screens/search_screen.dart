@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -25,24 +24,24 @@ class _SearchScreenState extends State<SearchScreen> {
 
   final TextEditingController _searchController = TextEditingController();
 
-  // late List<dynamic> items = [];
+  late List<dynamic> items = [];
 
-  // Future<List<TvModel>> searchTvShows(String query) async {
-  //   final response = await http
-  //       .get(Uri.parse('https://www.episodate.com/api/search?q=$query'));
-  //   if (response.statusCode == 200) {
-  //     final result = jsonDecode(response.body);
+  Future<List<TvModel>> searchTvShows(String query) async {
+    final response = await http
+        .get(Uri.parse('https://www.episodate.com/api/search?q=$query'));
+    if (response.statusCode == 200) {
+      final result = jsonDecode(response.body);
 
-  //     Iterable list = result['tv_shows'];
-  //     setState(() {
-  //       items = list as List<dynamic>;
-  //     });
+      Iterable list = result['tv_shows'];
+      setState(() {
+        items = list as List<dynamic>;
+      });
 
-  //     return list.map((e) => TvModel.fromJson(e)).toList();
-  //   } else {
-  //     throw Exception();
-  //   }
-  // }
+      return list.map((e) => TvModel.fromJson(e)).toList();
+    } else {
+      throw Exception();
+    }
+  }
 
   @override
   void dispose() {
@@ -115,7 +114,7 @@ class _SearchScreenState extends State<SearchScreen> {
       const SizedBox(
         height: 30,
       ),
-      state.tvList != null
+      items.isNotEmpty && _searchController.text.isNotEmpty
           ? buildResults(context, state)
           : buildNoResults(context)
     ]);
@@ -134,9 +133,12 @@ class _SearchScreenState extends State<SearchScreen> {
               controller: _searchController,
               keyboardType: TextInputType.text,
               decoration: buildInputDecoration(context),
+              cursorColor: Colors.white.withOpacity(0.4),
+              style: TextStyle(color: Colors.white.withOpacity(0.8)),
               onChanged: (value) {
                 query = value;
-                // searchTvShows(_searchController.text);
+                searchTvShows(_searchController.text);
+                //BlocProvider.of<TvCubit>(context).searchTvShow();
               },
             ),
           ),
@@ -192,20 +194,27 @@ class _SearchScreenState extends State<SearchScreen> {
         width: MediaQuery.of(context).size.width * 0.9,
         height: MediaQuery.of(context).size.height * 0.8,
         child: ListView(
-          children: state.tvList!
+          children: items
               .map(
-                (e) => ListTile(
-                  title: Text(
-                    e.name,
-                    style: const TextStyle(color: Colors.black),
-                  ),
-                  leading: SizedBox(
-                    width: 50,
-                    child: Image.network(
-                      e.imageUrl,
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Placeholder();
-                      },
+                (e) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(
+                      e['name'],
+                      //    e.name ?? '',
+                      style: TextStyle(color: Colors.white.withOpacity(0.8)),
+                    ),
+                    leading: SizedBox(
+                      width: 80,
+                      child: Image.network(
+                        e['imageUrl'] ?? '',
+                        // e.imageUrl,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Placeholder();
+                        },
+                      ),
                     ),
                   ),
                 ),
@@ -236,13 +245,13 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  Widget buildShow(TvModel show) => ListTile(
-        leading: Image.network(
-          show.imageUrl,
-          fit: BoxFit.cover,
-          width: 50,
-          height: 50,
-        ),
-        title: Text(show.name),
-      );
+  // Widget buildShow(TvModel show) => ListTile(
+  //       leading: Image.network(
+  //         show.imageUrl,
+  //         fit: BoxFit.cover,
+  //         width: 50,
+  //         height: 50,
+  //       ),
+  //       title: Text(show.name),
+  //     );
 }

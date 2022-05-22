@@ -18,18 +18,6 @@ class TvRepository {
     }
   }
 
-  Future<List<TvModel>> getPopularTvShows() async {
-    final response = await http
-        .get(Uri.parse('https://www.episodate.com/api/most-popular?page=2'));
-    if (response.statusCode == 200) {
-      final result = jsonDecode(response.body);
-      Iterable list = result['tv_shows'];
-      return list.map((e) => TvModel.fromJson(e)).toList();
-    } else {
-      throw Exception('Failed');
-    }
-  }
-
   Future<TvInfo> getMoreInfo(String query) async {
     final response = await http
         .get(Uri.parse('https://www.episodate.com/api/show-details?q=$query'));
@@ -41,6 +29,8 @@ class TvRepository {
       throw Exception('Failed');
     }
   }
+
+
 
   late List<dynamic> items = [];
 
@@ -55,6 +45,7 @@ class TvRepository {
       // setState(() {
       //   items = list as List<dynamic>;
       // });
+    
       return list.map((e) => TvModel.fromJson(e)).toList();
     } else {
       throw Exception();

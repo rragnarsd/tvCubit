@@ -25,7 +25,6 @@ class TvModel extends Equatable {
       permalink: data.containsKey('permalink') && data['permalink'] != null
           ? data['permalink']
           : '',
-
       country: data.containsKey('country') && data['country'] != null
           ? data['country']
           : '',
