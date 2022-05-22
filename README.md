@@ -15,7 +15,7 @@
 
 ## :bulb: Challenges
 - This is my first time working with Bloc/Cubits :fire:
-- First time working with animations, would love to learn more about that! :construction_worker:
+- First time working with animations, would love to learn and work more with that! :construction_worker:
 
 ## Getting Started
 
