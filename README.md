@@ -9,9 +9,11 @@
 
 ## :art: Design
 - Ideas from projects I've seen online, sprinkled with personal touch
+- The "PlayScreen" has hardcoded data - with an image from my favorite TvShow of all time! Vis a Vis or Locked Up :boom:
 - Font Family: Lato
 - Images are from:
   - www.pexels.com
+  - https://browsecat.net/tv-shows/vis-vis-wallpapers
 
 ## :bulb: Challenges
 - This is my first time working with Bloc/Cubits :fire:
