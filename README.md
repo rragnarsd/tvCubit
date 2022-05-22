@@ -14,10 +14,17 @@
 - Images are from:
   - www.pexels.com
   - https://browsecat.net/tv-shows/vis-vis-wallpapers
+- Custom made color palette
+  - #e7a71a - #605c56 - #211f1c - #cec3c1 - #f6f6f6
+
+<img width="884" alt="colors" src="https://user-images.githubusercontent.com/44742460/169709508-64a02827-bdd7-4ee4-b99a-228d1aea7940.png">
+
 
 ## :bulb: Challenges
 - This is my first time working with Bloc/Cubits :fire:
 - First time working with animations, would love to learn and work more with that! :construction_worker:
+
+
 
 ## Getting Started
 
