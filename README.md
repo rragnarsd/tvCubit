@@ -24,6 +24,10 @@
 - This is my first time working with Bloc/Cubits :fire:
 - First time working with animations, would love to learn and work more with that! :construction_worker:
 
+## Screenshot
+![FotoJet (2)](https://user-images.githubusercontent.com/44742460/169715384-9cf4a56a-46e3-4b99-8fb3-d4cfdf061afb.jpg)
+
+## Live preview
 
 
 ## Getting Started
