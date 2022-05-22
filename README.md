@@ -25,7 +25,7 @@
 - First time working with animations, would love to learn and work more with that! :construction_worker:
 
 ## Screenshot
-![FotoJet](https://user-images.githubusercontent.com/44742460/169714803-336c0302-d165-4dc1-b01d-6606092b505e.jpg)
+![FotoJet (2)](https://user-images.githubusercontent.com/44742460/169715384-9cf4a56a-46e3-4b99-8fb3-d4cfdf061afb.jpg)
 
 ## Live preview
 
