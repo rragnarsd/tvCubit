@@ -26,8 +26,10 @@
 
 ## Screenshot
 ![FotoJet (2)](https://user-images.githubusercontent.com/44742460/169715384-9cf4a56a-46e3-4b99-8fb3-d4cfdf061afb.jpg)
+![FotoJet (1)](https://user-images.githubusercontent.com/44742460/169869700-287dcaa3-d7ff-4620-afe7-2876ed12b460.jpg)
 
 ## Live preview
+
 
 
 ## Getting Started
