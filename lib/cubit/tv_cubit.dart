@@ -18,7 +18,7 @@ class TvCubit extends Cubit<TvState> {
 
     try {
       final tvShows = await tvRepository.getTvShows();
-      tv.addAll(tvShows);
+      //tv.addAll(tvShows);
       emit(state.copyWith(status: TvStatus.success, tvList: tvShows));
     } on Exception catch (exception) {
       emit(state.copyWith(status: TvStatus.failure, exception: exception));
@@ -36,12 +36,13 @@ class TvCubit extends Cubit<TvState> {
     }
   }
 
-  Future<void> searchTvShow() async {
+  Future<void> searchTvShow(String query) async {
     emit(state.copyWith(status: TvStatus.loading));
 
     try {
-      List<TvModel> data = await tvRepository.searchTvShows(query);
-      emit(state.copyWith(status: TvStatus.success, tvList: data));
+      var items = await tvRepository.searchTvShows(query);
+
+      emit(state.copyWith(status: TvStatus.success, tvList: items));
     } on Exception catch (exception) {
       emit(state.copyWith(status: TvStatus.failure, exception: exception));
     }

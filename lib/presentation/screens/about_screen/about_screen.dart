@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tv_cubit/data/repositories/tv_repository.dart';
-import '../../data/models/tv.dart';
-import '../../data/models/tv_info.dart';
-import '../../utils/constants.dart';
-import '../widgets/btn_with_extra_border.dart';
+import 'package:tv_cubit/presentation/shared/widgets/btn_with_extra_border.dart';
+import '../../../data/models/tv.dart';
+import '../../../data/models/tv_info.dart';
+import '../../../utils/constants.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({Key? key, required this.tvModel}) : super(key: key);
@@ -46,8 +46,8 @@ class _AboutScreenState extends State<AboutScreen>
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   @override

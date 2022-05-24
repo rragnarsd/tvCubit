@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tv_cubit/presentation/screens/search_screen.dart';
+import 'package:tv_cubit/presentation/screens/fav_screen/fav_screen.dart';
+import 'package:tv_cubit/presentation/screens/home_screen/home_screen.dart';
+import 'package:tv_cubit/presentation/screens/play_screen/play_screen.dart';
+import 'package:tv_cubit/presentation/screens/profile_screen/profile_screen.dart';
+import 'package:tv_cubit/presentation/screens/search_screen/search_screen.dart';
 
-import '../screens/fav_screen.dart';
-import '../screens/home_screen.dart';
-import '../screens/play_screen.dart';
-import '../screens/profile_screen.dart';
 import 'glassmorphism.dart';
 
 class BottomBar extends StatefulWidget {
